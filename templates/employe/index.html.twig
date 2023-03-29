@@ -6,6 +6,9 @@
 <h1>List des employés </h1>
 {% for employe in employes %}
     {# {{ entreprise.raisonSociale }} ({{ entreprise.cp }} {{ entreprise.ville }}) <br> #}
-    {{ employe }} <strong> travaille pour </strong> : {{employe.entreprise.raisonSociale  }}<br>   
+    {# {{ employe }} <strong> travaille pour </strong> : {{employe.entreprise.raisonSociale  }}<br>    #}
+    <a href="{{ path('show_employe', {'id':employe.id}) }}"> {{ employe }} </a>
+    <br/>
+
     {% endfor %}
 {% endblock %}

@@ -111,6 +111,6 @@ class Employe
     }
     public function __toString()
     {
-        return $this->nom ." ". $this->prenom;
+        return $this->nom ." ". $this->prenom ." Boss Chez ".$this->entreprise->getRaisonSociale();
     }
 }

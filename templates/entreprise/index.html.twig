@@ -3,6 +3,8 @@
 {% block title %}Hello EntrepriseController!{% endblock %}
 
 {% block body %}
+<h1>List des entreprises </h1>
+
 {% for entreprise in entreprises %}
     {# {{ entreprise.raisonSociale }} ({{ entreprise.cp }} {{ entreprise.ville }}) <br> #}
    <a href="{{ path('show_entreprise', {'id':entreprise.id}) }}"> {{ entreprise }} </a>
