@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Entreprise;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,10 +11,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class EntrepriseController extends AbstractController
 {
     #[Route('/entreprise', name: 'app_entreprise')]
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
+        // $entreprises =$doctrine->getRepository(Entreprise::class)->findAll();
+        $entreprises =$doctrine->getRepository(Entreprise::class)->findBy([] , ["dateCreation" =>"desc"]);
+        // $employes =$doctrine->getRepository(Employe::class)->findBy([] , ["nom" =>"ASC"]);
+        
         return $this->render('entreprise/index.html.twig', [
-            'controller_name' => 'EntrepriseController',
+            'entreprises' => $entreprises
+            
         ]);
     }
+
+
+    // la route name cest utiliser dans les liens pour le path property 
+    // <a href="{{ path('show_entreprise') }}"> {{ entreprise }} </a>
+
+    #[Route('/entreprise/{id}', name: 'show_entreprise')]
+    public function show(Entreprise $entreprise): Response
+    {   
+        
+        return $this->render('entreprise/show.html.twig', [
+            'entreprise' => $entreprise
+            
+        ]);
+
+    }
+
 }

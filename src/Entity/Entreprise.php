@@ -17,7 +17,7 @@ class Entreprise
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $raispnSociale = null;
+    private ?string $raisonSociale = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateCreation = null;
@@ -44,14 +44,14 @@ class Entreprise
         return $this->id;
     }
 
-    public function getRaispnSociale(): ?string
+    public function getRaisonSociale(): ?string
     {
-        return $this->raispnSociale;
+        return $this->raisonSociale;
     }
 
-    public function setRaispnSociale(string $raispnSociale): self
+    public function setRaisonSociale(string $raisonSociale): self
     {
-        $this->raispnSociale = $raispnSociale;
+        $this->raisonSociale = $raisonSociale;
 
         return $this;
     }
@@ -132,5 +132,10 @@ class Entreprise
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->raisonSociale . " (" . $this->cp . $this->ville . " )";
     }
 }
