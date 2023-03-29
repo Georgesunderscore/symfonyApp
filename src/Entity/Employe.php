@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\EmployeRepository;
+// use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Query\AST\Functions\DateDiffFunction;
 
 #[ORM\Entity(repositoryClass: EmployeRepository::class)]
 class Employe
@@ -109,8 +111,15 @@ class Employe
 
         return $this;
     }
+    public function getAge(){
+        $now = new \DateTime();
+        $interval = date_diff($this->dateNaissance,$now);
+        return $interval->format("%Y");
+
+    }
     public function __toString()
     {
         return $this->nom ." ". $this->prenom ." Boss Chez ".$this->entreprise->getRaisonSociale();
     }
+
 }

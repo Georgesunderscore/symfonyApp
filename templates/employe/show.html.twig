@@ -8,7 +8,10 @@
    {# <a href="{{ path('show_entreprise') }}"> {{ entreprise }} </a> #}
    {# <a href="{{ path('show_employe') }}"> {{ entreprise }} </a> #}
    <h2 > {{ employe }} </h2>
-   <p> {{ employe.ville}}</p>
+   <p> Ville : {{ employe.ville}}</p>
+        Entreprise :<a href="{{path('show_entreprise',{'id' : employe.entreprise.id })}}">{{employe.entreprise}}</a><br>
+
+   <p> Date d'embauche : {{ employe.dateEmbauche | date('d-m-Y')}} ({{employe.age}} ans)</p>
    <br>
 
 
