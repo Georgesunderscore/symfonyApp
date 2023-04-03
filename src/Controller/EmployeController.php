@@ -54,6 +54,20 @@ class EmployeController extends AbstractController
 
     }
 
+    #[Route('/employe/{id}/delete', name: 'delete_employe')]
+    public function delete(ManagerRegistry $doctrine , Employe $employe= null, Request $request): Response
+    {   
+        $entityManager = $doctrine->getManager();
+        // prepare  
+        $entityManager->remove($employe);
+        // execute 
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('app_employe');
+        
+    
+    }
+
     
     #[Route('/employe/{id}', name: 'show_employe')]
     public function show(Employe $employe): Response

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Entreprse;
 use App\Entity\Entreprise;
 use App\Form\EntrepriseType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -47,11 +48,30 @@ class EntrepriseController extends AbstractController
 
         }
         return $this->render('entreprise/add.html.twig', [
-            'formAddEntreprise' => $form->createView()]);
+            'formAddEntreprise' => $form->createView(),
+            'editEntreprise' => $entreprise->getId()]);
 
     }
     // la route name cest utiliser dans les liens pour le path property 
     // <a href="{{ path('show_entreprise') }}"> {{ entreprise }} </a>
+
+    
+    #[Route('/entreprise/{id}/delete', name: 'delete_entreprise')]
+    public function delete(ManagerRegistry $doctrine , Entreprise $entreprise= null, Request $request): Response
+    {   
+        $entityManager = $doctrine->getManager();
+        // prepare  
+        $entityManager->remove($entreprise);
+        // execute 
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('app_entreprise');
+        
+    
+    }
+
+
+    
 
     #[Route('/entreprise/{id}', name: 'show_entreprise')]
     public function show(Entreprise $entreprise): Response

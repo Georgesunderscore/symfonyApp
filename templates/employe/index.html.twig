@@ -11,8 +11,9 @@
     {# {{ employe }} <strong> travaille pour </strong> : {{employe.entreprise.raisonSociale  }}<br>    #}
     <a href="{{ path('show_employe', {'id':employe.id}) }}"> {{ employe }} </a>
     <a class="btn btn-warning" href="{{ path('edit_employe', {'id':employe.id}) }}"> Editer </a>
+    <a class="btn btn-danger" href="{{ path('delete_employe', {'id':employe.id}) }}"> Supprimer </a>
 
-    <br/>
+    <br/>   
 
     {% endfor %}
 {% endblock %}

@@ -3,7 +3,11 @@
 {% block title %}L'Ajoute!{% endblock %}
 
 {% block body %}
-   <h1>Ajouter une entreprise</h1>
+    {% if editEntreprise %}
+      <h1>Editer une entreprise</h1>
+    {% else %}
+      <h1>Ajouter une entreprise</h1>
+    {% endif %}
 {{form(formAddEntreprise)}}
 
 {% endblock %}

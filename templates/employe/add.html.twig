@@ -4,6 +4,19 @@
 
 {% block body %}
    <h1>Ajouter un employe</h1>
-{{form(formAddEmploye)}}
+{# {{form(formAddEmploye)}} #}
+
+{{ form_start(formAddEmploye) }}
+   <div class="formprenomnom">
+    {{ form_row(formAddEmploye.nom) }}
+    {{ form_row(formAddEmploye.prenom) }}
+   </div>
+    {{ form_row(formAddEmploye.dateNaissance) }}
+    {{ form_row(formAddEmploye.dateEmbauche) }}
+    {{ form_row(formAddEmploye.ville) }}
+    {{ form_row(formAddEmploye.entreprise) }}
+    {{ form_row(formAddEmploye.submit, { 'label': 'Submit me' }) }}
+{{ form_end(formAddEmploye) }}
+
 
 {% endblock %}

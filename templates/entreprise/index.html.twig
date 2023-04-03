@@ -11,6 +11,7 @@
     {# {{ entreprise.raisonSociale }} ({{ entreprise.cp }} {{ entreprise.ville }}) <br> #}
    <a href="{{ path('show_entreprise', {'id':entreprise.id}) }}"> {{ entreprise }} </a>
    <a class="btn btn-warning" href="{{ path('edit_entreprise', {'id':entreprise.id}) }}"> Editer </a>
+   <a class="btn btn-danger" href="{{ path('delete_entreprise', {'id':entreprise.id}) }}"> Supprimer </a>
    <br>
 
 {% endfor %}
